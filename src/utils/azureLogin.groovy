@@ -2,8 +2,8 @@ package utils
 
 import groovy.json.JsonSlurper
 
+// Define the Azure login function
 def azLogin(String azureCredentials, String environment) {
-
     try {
         echo "Attempting to login to Azure account for environment: ${environment}..."
 
@@ -36,6 +36,7 @@ def azLogin(String azureCredentials, String environment) {
     }
 }
 
+// Define the fallback login function
 def defaultLogin() {
     try {
         echo "Attempting default Azure login..."
