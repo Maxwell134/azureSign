@@ -9,10 +9,11 @@ pipeline {
     stages {
         stage('Azure Login') {
             steps {
-                script {
+                echo "Hello world"
+                // script {
                     // Pass 'dev' as the environment parameter
-                    azureLogin(AZURE_CREDENTIALS, 'dev')  // You can replace 'dev' with other environments (like 'prod', etc.)
-                }
+                    // azureLogin(AZURE_CREDENTIALS, 'dev')  // You can replace 'dev' with other environments (like 'prod', etc.)
+                // }
             }
         }
     }
