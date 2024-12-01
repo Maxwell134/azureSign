@@ -25,7 +25,7 @@ def azLogin(String azureCredentials, String environment) {
                 // Perform Azure login with the service principal credentials
                 sh """
                     az login --service-principal --username ${USERNAME} --password ${PASSWORD} --tenant ${TENANT_ID} --use-device-code
-                """"
+                """
                 echo "Login successful."    
             
             } else {
