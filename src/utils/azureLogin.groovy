@@ -20,10 +20,10 @@ def azLogin(String azureCredentials, String environment) {
             // Check if all required parameters are provided
             if (USERNAME?.trim() && PASSWORD?.trim() && TENANT_ID?.trim()) {
                 echo "Logging in with provided credentials..."
-                set -x
+                
                 // Perform Azure login with the service principal credentials
                 sh 'az login --service-principal --username ${USERNAME} --password ${PASSWORD}  --tenant ${TENANT_ID}'
-                set +x
+                
                 echo "Login successful."
             } else {
                 echo "Missing one or more required parameters: username, password, or tenant_id. Please check and try again."
