@@ -1,6 +1,6 @@
 package utils
 
-import groovy.json.JsonSlurper
+import groovy.json.JsonSlurperClassic
 
 // Define the Azure login function
 def azLogin(String azureCredentials, String environment) {
@@ -11,7 +11,7 @@ def azLogin(String azureCredentials, String environment) {
         withCredentials([string(credentialsId: azureCredentials, variable: 'AZURE_CREDENTIALS')]) {
 
             // Parse the JSON stored in AZURE_CREDENTIALS
-            def jsonSlurper = new JsonSlurper()
+            def jsonSlurper = new JsonSlurperClassic()
             def credentialJsonobj = jsonSlurper.parseText(AZURE_CREDENTIALS)
             // Access properties correctly using get() method or safe navigation
             def USERNAME = credentialJsonobj.username
