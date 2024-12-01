@@ -3,7 +3,7 @@
 pipeline {
     agent any
         environment {
-        PATH = "${env.PATH}:/usr/local/bin"  // Add /usr/local/bin for kubectl and Docker
+        PATH = "${env.PATH}:/opt/homebrew/bin"  // Add /opt/homebrew/bin to the PATH
     }
     stages {
         stage('Azure Login') {
