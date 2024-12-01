@@ -9,7 +9,8 @@ pipeline {
                 script {
                     try {
                         // Call the function directly from the utils package
-                        utils.azLogin('azure-credentials-id', 'production')
+                        def commonUtils = new utils.AzureLogin()
+                        commonUtils.azLogin('azure-credentials-id', 'production')
                     } catch (Exception e) {
                         echo "Failed to perform Azure login: ${e.message}"
                         currentBuild.result = 'FAILURE'  // Mark the build as failed
