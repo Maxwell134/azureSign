@@ -15,10 +15,3 @@ def call(String azureCredentials, String environment) {
 }
 
 
-
-
-
-
-
-
-}
