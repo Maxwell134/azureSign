@@ -1,17 +1,19 @@
-@Library(['my-shared-library']) _
+@Library('my-shared-library') _  // Import the shared library if needed
+
 pipeline {
     agent any
 
-    environment {
-        AZURE_CREDENTIALS = credentials('azure-credentials-id') // Jenkins credentials ID
-    }
-
     stages {
         stage('Azure Login') {
-            steps {      
+            steps {
                 script {
-                    Pass 'dev' as the environment parameter
-                    azureLogin(AZURE_CREDENTIALS, 'dev')  // You can replace 'dev' with other environments (like 'prod', etc.)
+                    try {
+                        // Call the function directly from the utils package
+                        utils.azLogin('azure-credentials-id', 'production')
+                    } catch (Exception e) {
+                        echo "Failed to perform Azure login: ${e.message}"
+                        currentBuild.result = 'FAILURE'  // Mark the build as failed
+                    }
                 }
             }
         }
