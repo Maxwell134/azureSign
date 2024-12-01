@@ -11,20 +11,21 @@ def azLogin(String azureCredentials, String environment) {
         withCredentials([string(credentialsId: azureCredentials, variable: 'AZURE_CREDENTIALS')]) {
 
             // Parse the JSON stored in AZURE_CREDENTIALS
-            def credentialJsonobj = new JsonSlurper().parseText(AZURE_CREDENTIALS)
+            def jsonSlurper = new JsonSlurper()
+            def credentialJsonobj = jsonSlurper.parseText(AZURE_CREDENTIALS)
             // Access properties correctly using get() method or safe navigation
-            def USERNAME = credentialJsonobj?.get('username')?.trim()
-            def PASSWORD = credentialJsonobj?.get('password')?.trim()
-            def TENANT_ID = credentialJsonobj?.get('tenant_id')?.trim()
-            
+            def USERNAME = credentialJsonobj.username
+            def PASSWORD = credentialJsonobj.password
+            def TENANT_ID = credentialJsonobj.tenant_id
+
             // Check if all required parameters are provided
             if (USERNAME?.trim() && PASSWORD?.trim() && TENANT_ID?.trim()) {
                 echo "Logging in with provided credentials..."
-                
+
                 // Perform Azure login with the service principal credentials
-                sh "az login --service-principal --username ${USERNAME} --password ${PASSWORD} --tenant ${TENANT_ID}"
-                
-                echo "Login successful."
+                sh "az login --service-principal --username $USERNAME --password $PASSWORD --tenant $TENANT_ID"
+                echo "Login successful."    
+            
             } else {
                 echo "Missing one or more required parameters: username, password, or tenant_id. Please check and try again."
                 defaultLogin()  // Fallback login attempt
