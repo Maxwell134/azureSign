@@ -8,6 +8,15 @@ pipeline {
         
         }
     stages {
+
+        stage('PIP Builder') {
+            steps {
+                script {
+                    pip_builder(requirements: 'requirements.txt', // Optional
+                        script: 'pod_monitor.py' // Default is 'sample.py')
+                }
+            }
+        }
         stage('Azure Login') {
             steps {
                 script {
