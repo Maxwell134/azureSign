@@ -41,8 +41,6 @@ pipeline {
         stage('Remove kubeconfig') {
             steps {
                 script {
-                    sh 'pip3 install -r requirements.txt'
-                    sh 'python3 pod_monitor.py'
                     sh "rm -rf ${WORKSPACE}/.kube/config"
                     sh "ls ${WORKSPACE}"
                 }
