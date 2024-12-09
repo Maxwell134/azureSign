@@ -18,7 +18,7 @@ def call(Map config = [:]) {
         }
         sh "kubectl port-forward svc/tommy-myrelease 81:80 &"
         // Run the specified Python script
-        def script = config.script ?: 'pod_monitor.py'
+        def script = config.script ?: 'sample.py'
         echo "Running Python script: ${script}..."
         sh """
         source venv/bin/activate
