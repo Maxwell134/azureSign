@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     pip_builder(requirements: 'requirements.txt', // Optional
-                        script: 'pod_monitor.py' 
+                        script: 'sample.py' 
                     // Default is 'sample.py')
                     )
                 }
