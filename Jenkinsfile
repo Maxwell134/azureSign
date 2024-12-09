@@ -4,7 +4,7 @@ pipeline {
     agent any
         environment {
         PATH = "${env.PATH}:/opt/homebrew/bin"  // Add /opt/homebrew/bin to the PATH
-        KUBECONFIG = ${WORKSPACE}/.kube/config
+        KUBECONFIG = "${WORKSPACE}/.kube/config"
         
         }
     stages {
