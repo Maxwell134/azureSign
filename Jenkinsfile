@@ -10,7 +10,9 @@ pipeline {
         stage('Azure Login') {
             steps {
                 script {
-                    sh 'kubectl get nodes'
+                    sh 'mkdir -p ${WORKSPACE}/.kube'
+                    sh 'cp ~/.kube/config ${WORKSPACE}/.kube/config'
+                    sh "kubectl --kubeconfig=${WORKSPACE}/.kube/config get nodes"
                     // try {
                     //     // Call the function directly from the utils package
                         
