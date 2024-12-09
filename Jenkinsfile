@@ -14,8 +14,8 @@ pipeline {
                     sh 'mkdir -p ${WORKSPACE}/.kube'
                     sh 'cp ~/.kube/config ${WORKSPACE}/.kube/config'     
                     sh "kubectl get pods"
-                    sh "kubectl  get svc"
-                    sh "curl localhost"
+                    sh "kubectl port-forward svc/tommy-myrelease1 80:80 &"
+                    sh "curl localhost:80"
                     // try {
                     //     // Call the function directly from the utils package
                         
