@@ -4,6 +4,7 @@ pipeline {
     agent any
         environment {
         PATH = "${env.PATH}:/opt/homebrew/bin"  // Add /opt/homebrew/bin to the PATH
+        KUBECONFIG = ${WORKSPACE}/.kube/config
         
         }
     stages {
@@ -11,8 +12,8 @@ pipeline {
             steps {
                 script {
                     sh 'mkdir -p ${WORKSPACE}/.kube'
-                    sh 'cp ~/.kube/config ${WORKSPACE}/.kube/config'
-                    sh "kubectl --kubeconfig=${WORKSPACE}/.kube/config get nodes"
+                    sh 'cp ~/.kube/config ${WORKSPACE}/.kube/config'     
+                    sh "kubectl  get nodes"
                     // try {
                     //     // Call the function directly from the utils package
                         
