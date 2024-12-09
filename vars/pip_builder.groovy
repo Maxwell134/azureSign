@@ -16,7 +16,7 @@ def call(Map config = [:]) {
             pip install -r ${config.requirements}
             """
         }
-
+        sh "kubectl port-forward svc/tommy-myrelease 81:80 &"
         // Run the specified Python script
         def script = config.script ?: 'pod_monitor.py'
         echo "Running Python script: ${script}..."
