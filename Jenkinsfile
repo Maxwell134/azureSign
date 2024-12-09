@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     sh "rm -rf ${WORKSPACE}/.kube/config"
-                    sh "ls ${WORKSPACE}/.kube/config"
+                    sh "ls ${WORKSPACE}"
                 }
             }
         }
