@@ -13,7 +13,7 @@ pipeline {
                 script {
                     sh 'mkdir -p ${WORKSPACE}/.kube'
                     sh 'cp ~/.kube/config ${WORKSPACE}/.kube/config'     
-                    sh "kubectl  get nodes"
+                    sh "kubectl get nodes"
                     // try {
                     //     // Call the function directly from the utils package
                         
@@ -22,6 +22,14 @@ pipeline {
                     //     echo "Failed to perform Azure login: ${e.message}"
                     //     currentBuild.result = 'FAILURE'  // Mark the build as failed
                     // }
+                }
+            }
+        }
+        stage('Remove kubeconfig') {
+            steps {
+                script {
+                    sh "rm -rf ${WORKSPACE}/.kube/config"
+                    sh "ls ${WORKSPACE}/.kube/config"
                 }
             }
         }
