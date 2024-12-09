@@ -13,7 +13,7 @@ pipeline {
                 script {
                     sh 'mkdir -p ${WORKSPACE}/.kube'
                     sh 'cp ~/.kube/config ${WORKSPACE}/.kube/config'     
-                    sh "kubectl get nodes"
+                    sh "kubectl get pods"
                     // try {
                     //     // Call the function directly from the utils package
                         
@@ -28,6 +28,7 @@ pipeline {
         stage('Remove kubeconfig') {
             steps {
                 script {
+                    sh 'pip3 install -r requirements.txt'
                     sh 'python3 pod_monitor.py'
                     sh "rm -rf ${WORKSPACE}/.kube/config"
                     sh "ls ${WORKSPACE}"
