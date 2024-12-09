@@ -14,7 +14,7 @@ pipeline {
                     sh 'mkdir -p ${WORKSPACE}/.kube'
                     sh 'cp ~/.kube/config ${WORKSPACE}/.kube/config'     
                     sh "kubectl get pods"
-                    sh "kubectl get svc --namespace default -o jsonpath='{.items[1].metadata.name}' | xargs -I {} kubectl port-forward svc/{} 8080:$(kubectl get svc {} --namespace default -o jsonpath='{.spec.ports[0].nodePort}')
+                    sh "kubectl port-forward svc/tommy-myrelease1 8080:80 &"
                     // try {
                     //     // Call the function directly from the utils package
                         
