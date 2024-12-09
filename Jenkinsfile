@@ -10,7 +10,7 @@ pipeline {
         stage('Azure Login') {
             steps {
                 script {
-                    'kubectl get nodes'
+                    sh 'kubectl get nodes'
                     // try {
                     //     // Call the function directly from the utils package
                         
